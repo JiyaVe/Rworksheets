@@ -1,23 +1,24 @@
-#Q2
-#Cricketer Info
+#Questions
 
-cricket <- read.csv("battingbowling.csv")
+#1
+#Logic: Run loop throughout the pixels and calculate the euclidian distance of the pixels. 
+#The point with the smallest distance will be closest to the point (0,1,0)purest green.
 
-cricket
+#To find purest Green
+dist <- matrix(0, nrow = dim(dog)[1], ncol = dim(dog)[2])
 
-player <- subset(cricket, Bowling <= 40 & Batting >= 25)
-
-player
-
-team1 <- subset(player, Team == "India")
-team2 <- subset(player, Team == "Australia")
-team3 <- subset(player, Team == "England")
-team4 <- subset(player, Team == "New Zealand")
-team5 <- subset(player, Team == "Pakistan")
-team6 <- subset(player, Team == "South Africa")
-
-for (i in c(team1,team2,team3,team4,team5,team6))
+for (i in 1:dim(dog)[1])
 {
-  if( dim(i + 1)[1] > dim(i)[1] ) 
-    max <- i
+  for (j in 1:dim(dog)[2])
+  {
+  dist[i,j] <- norm(dog[i,j,1,] - c(0,1,0), "2")
+    
+  }
 }
+
+index <- which(dist == min(dist), arr.ind = TRUE)
+plot(dog)
+points(index , col = "Red" ,pch = 16)
+
+#2
+#To find purest red and blue change the vector to (1,0,0) and (0,0,1)
