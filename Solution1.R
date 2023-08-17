@@ -1,31 +1,43 @@
-#Images
-#The InTro
+#Q1
+#Count Number of Students
 
-library(imager)
+seat <- read.csv("https://dvats.github.io/assets/course/mth208/seating.csv")
 
-#loading and plotting the image
-dog <- load.image("dog.jpeg")
-dim(dog)
-plot(dog)
+seat
 
-#plotting the image in grayscale
-graydog <- grayscale(dog)
-dim(graydog)
-plot(graydog)
+head(seat)
 
-#To extract the raw matrix or array of the image
-gray.mat <- as.matrix(graydog[,,1,1])#Of grayscale
-dim(gray.mat)
+head(seat,3)
 
-col.mat <- as.array(dog[,,1,])#of the original image
-dim(col.mat)
+tail(seat,2)
 
-#crop image
-cropped <- col.mat[1:300,,]#vertical cropping
-crop.dog <- as.cimg(cropped)
-plot(crop.dog)
+summary(seat)
+#summary of dataset
 
-dog[1,1,1,]
+str(seat)
+# structure of dataset
+# $ represent column
 
+n <- dim(seat)[1]
+ms <- 0
+bs <- 0
 
+for(i in 1:n)
+{
+  if (seat$Roll.No[i] > 1000000 )
+  {
+    ms <- ms + 1
+  }
+  else
+  {
+    bs <- bs + 1
+  }
+}
 
+bs # nmuber of bs students
+ms # number of ms students
+
+#Without using loop ( by truth values)
+
+sum(seat$Roll.No > 1000000)
+sum(seat$Roll.No < 1000000)
